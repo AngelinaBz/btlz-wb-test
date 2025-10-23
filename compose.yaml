@@ -83,5 +83,8 @@ services:
         max-size: 10m
         max-file: 5
 
+    volumes:
+      - ./google-sa.json:/run/secrets/google-sa.json:ro
+
     command: [ "npm", "run", "start" ]
     restart: unless-stopped
