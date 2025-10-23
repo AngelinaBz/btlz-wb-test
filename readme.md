@@ -1,54 +1,31 @@
-# Шаблон для выполнения тестового задания
+# WB Tariffs Service
 
 ## Описание
-Шаблон подготовлен для того, чтобы попробовать сократить трудоемкость выполнения тестового задания.
 
-В шаблоне настоены контейнеры для `postgres` и приложения на `nodejs`.  
-Для взаимодействия с БД используется `knex.js`.  
-В контейнере `app` используется `build` для приложения на `ts`, но можно использовать и `js`.
+Сервис для автоматического получения тарифов с Wildberries API, хранения данных в PostgreSQL и регулярной выгрузки в Google Sheets.
 
-Шаблон не является обязательным!\
-Можно использовать как есть или изменять на свой вкус.
+## Пример таблицы
 
-Все настройки можно найти в файлах:
-- compose.yaml
-- dockerfile
-- package.json
-- tsconfig.json
-- src/config/env/env.ts
-- src/config/knex/knexfile.ts
+Вы можете посмотреть пример обновляемой таблицы по ссылке:  
+[Пример Google Sheets](https://docs.google.com/spreadsheets/d/1ieZ1XzQoLlxuad9RHJZJ7TxgW6LQQfz8v0gRYnaJJwQ/edit?usp=sharing)
 
-## Команды:
+## Установка и запуск:
 
-Запуск базы данных:
-```bash
-docker compose up -d --build postgres
-```
-
-Для выполнения миграций и сидов не из контейнера:
-```bash
-npm run knex:dev migrate latest
-```
+1. Клонируйте репозиторий
 
 ```bash
-npm run knex:dev seed run
+git clone {repository URL}
 ```
-Также можно использовать и остальные команды (`migrate make <name>`,`migrate up`, `migrate down` и т.д.)
 
-Для запуска приложения в режиме разработки:
+2. Настройте сервисный аккаунт Google Cloud Console и скачайте JSON-ключ, сохранив его в файл `google-sa.json`.
+
+3. Скопируйте .example.env и настройте окружение
+
+WB_API_TOKEN — токен доступа Wildberries
+SPREADSHEET_IDS — ID таблицы Google Sheets
+
+4. Установите Docker, запустите базу данных и приложение
+
 ```bash
-npm run dev
+docker compose up -d --build
 ```
-
-Запуск проверки самого приложения:
-```bash
-docker compose up -d --build app
-```
-
-Для финальной проверки рекомендую:
-```bash
-docker compose down --rmi local --volumes
-docker compose up --build
-```
-
-PS: С наилучшими пожеланиями!
