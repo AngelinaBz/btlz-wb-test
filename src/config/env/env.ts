@@ -19,16 +19,15 @@ const envSchema = z.object({
             .regex(/^[0-9]+$/)
             .transform((value) => parseInt(value)),
     ]),
+    DATABASE_URL: z.string().optional(),
+    WB_TARIFFS_URL: z.string().url(),
+    WB_API_TOKEN: z.string().optional(),
+    GOOGLE_SA_KEY_FILE: z.string(),
+    SPREADSHEET_IDS: z.string().default(""),
+    SHEET_NAME: z.string().default("stocks_coefs"),
+    TIMEZONE: z.string().default("Europe/Moscow"),
 });
 
-const env = envSchema.parse({
-    POSTGRES_HOST: process.env.POSTGRES_HOST,
-    POSTGRES_PORT: process.env.POSTGRES_PORT,
-    POSTGRES_DB: process.env.POSTGRES_DB,
-    POSTGRES_USER: process.env.POSTGRES_USER,
-    POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
-    NODE_ENV: process.env.NODE_ENV,
-    APP_PORT: process.env.APP_PORT,
-});
+const env = envSchema.parse(process.env);
 
 export default env;
