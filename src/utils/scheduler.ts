@@ -8,5 +8,5 @@ export function scheduleJobs() {
   cron.schedule("0 * * * *", fetchTariffs, { timezone: env.TIMEZONE });
   cron.schedule("0 9 * * *", updateSheets, { timezone: env.TIMEZONE });
 
-  console.log(`Jobs scheduled (TZ=${env.TIMEZONE})`);
+  console.log(`Jobs scheduled`);
 }

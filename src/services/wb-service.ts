@@ -1,6 +1,6 @@
 import env from "#config/env/env.js";
 import knex from "#postgres/knex.js";
-import { Tariff, WbResponse, WbWarehouse } from "#utils/types.js";
+import { Tariff, WbResponse} from "#utils/types.js";
 import axios from "axios";
 
 export async function fetchTariffs(): Promise<void> {
